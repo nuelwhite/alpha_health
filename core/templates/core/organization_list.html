@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Organizations</title>
+</head>
+<body>
+    <h1>Our Organizations</h1>
+    <ul>
+        {% for org in organizations %}
+            <li>
+                <strong>{{ org.name }}</strong> ({{ org.country }})
+                <p>{{ org.short_description }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
