@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+</head>
+<body>
+    <h1>Projects</h1>
+    <ul>
+        {% for project in projects %}
+            <li>
+                <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                {% if project.organization %}
+                    — {{ project.organization.name }}
+                {% endif %}
+                <p>{{ project.excerpt }}</p>
+            </li>
+        {% empty %}
+            <li>No projects published yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

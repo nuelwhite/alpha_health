@@ -11,3 +11,6 @@ __pycache__/
 # Editor
 .vscode/
 .idea/
+
+# Media uploads
+media/
