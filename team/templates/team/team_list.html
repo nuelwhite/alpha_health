@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Our Team</title></head>
+<body>
+    <h1>Our Team</h1>
+    <ul>
+        {% for member in members %}
+            <li>
+                {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" width="150">
+                {% endif %}
+                <strong>{{ member.name }}</strong> — {{ member.position }}
+                {% if member.organization %}
+                    <br><em>{{ member.organization.name }}</em>
+                {% endif %}
+                <p>{{ member.biography }}</p>
+            </li>
+        {% empty %}
+            <li>No team members listed yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
