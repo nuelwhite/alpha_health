@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Products</title></head>
+<body>
+    <h1>Products</h1>
+
+    <nav>
+        <a href="{% url 'product_list' %}">All</a>
+        {% for category in categories %}
+            | <a href="{% url 'product_list' %}?category={{ category.slug }}">{{ category.name }}</a>
+        {% endfor %}
+    </nav>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
+                — {{ product.category.name }} ({{ product.product_code }})
+            </li>
+        {% empty %}
+            <li>No products found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
