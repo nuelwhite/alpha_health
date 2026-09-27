@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head><title>{{ service.name }}</title></head>
-<body>
+{% extends 'base.html' %}
+{% block title %}{{ service.name }}{% endblock %}
+{% block content %}
     <p><a href="{% url 'service_list' %}">&larr; Back to Services</a></p>
     <h1>{{ service.name }}</h1>
     {% if service.image %}
         <img src="{{ service.image.url }}" alt="{{ service.name }}" width="500">
     {% endif %}
     <div>{{ service.description|linebreaks }}</div>
-</body>
-</html>
+{% endblock %}

@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head><title>Services</title></head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Services{% endblock %}
+{% block content %}
     <h1>Services</h1>
     <ul>
         {% for service in services %}
@@ -13,5 +12,4 @@
             <li>No services listed yet.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

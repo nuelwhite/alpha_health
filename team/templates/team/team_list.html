@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head><title>Our Team</title></head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Our Team{% endblock %}
+{% block content %}
     <h1>Our Team</h1>
     <ul>
         {% for member in members %}
@@ -19,5 +18,4 @@
             <li>No team members listed yet.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

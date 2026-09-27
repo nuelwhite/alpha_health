@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Our Organizations</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Organizations{% endblock %}
+
+{% block content %}
     <h1>Our Organizations</h1>
     <ul>
         {% for org in organizations %}
@@ -13,5 +12,4 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

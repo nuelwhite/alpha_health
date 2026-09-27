@@ -1,27 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ project.title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}{{ project.title }}{% endblock %}
+{% block content %}
     <p><a href="{% url 'project_list' %}">&larr; Back to Projects</a></p>
-
     <h1>{{ project.title }}</h1>
-
     {% if project.organization %}
         <p><em>{{ project.organization.name }}</em></p>
     {% endif %}
-
     {% if project.location %}
         <p>Location: {{ project.location }}</p>
     {% endif %}
-
     {% if project.featured_image %}
         <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" width="500">
     {% endif %}
-
     <div>{{ project.content|linebreaks }}</div>
-
     {% if project.images.all %}
         <h2>Gallery</h2>
         {% for img in project.images.all %}
@@ -31,5 +22,4 @@
             </figure>
         {% endfor %}
     {% endif %}
-</body>
-</html>
+{% endblock %}

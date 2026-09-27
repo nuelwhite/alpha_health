@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>The Alpha Health Group</h1>
+    <p>Advancing health equity through sterilization training, community outreach, and medical supply.</p>
+
+    <h2>Our Organizations</h2>
+    <ul>
+        {% for org in organizations %}
+            <li>{{ org.name }} ({{ org.country }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Featured Projects</h2>
+    <ul>
+        {% for project in featured_projects %}
+            <li><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></li>
+        {% empty %}
+            <li>No projects yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Our Services</h2>
+    <ul>
+        {% for service in services %}
+            <li><a href="{% url 'service_detail' service.slug %}">{{ service.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

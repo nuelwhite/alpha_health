@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head><title>Products</title></head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Products{% endblock %}
+{% block content %}
     <h1>Products</h1>
-
-    <nav>
+    <div>
         <a href="{% url 'product_list' %}">All</a>
         {% for category in categories %}
             | <a href="{% url 'product_list' %}?category={{ category.slug }}">{{ category.name }}</a>
         {% endfor %}
-    </nav>
-
+    </div>
     <ul>
         {% for product in products %}
             <li>
@@ -21,5 +18,4 @@
             <li>No products found.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
