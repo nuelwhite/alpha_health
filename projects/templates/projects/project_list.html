@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Projects</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
     <h1>Projects</h1>
     <ul>
         {% for project in projects %}
@@ -18,5 +17,4 @@
             <li>No projects published yet.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
