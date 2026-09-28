@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactForm
+from products.models import Product
 
 
 def contact_view(request):
@@ -9,7 +10,12 @@ def contact_view(request):
             form.save()
             return redirect('contact_success')
     else:
-        form = ContactForm()
+        initial = {}
+        product_id = request.GET.get('product')
+        if product_id:
+            product = get_object_or_404(Product, id=product_id, active=True)
+            initial = {'product': product}
+        form = ContactForm(initial=initial)
 
     return render(request, 'contact/contact_form.html', {'form': form})
 
