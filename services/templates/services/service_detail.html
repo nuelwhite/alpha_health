@@ -3,6 +3,9 @@
 {% block content %}
     <p><a href="{% url 'service_list' %}">&larr; Back to Services</a></p>
     <h1>{{ service.name }}</h1>
+    {% if service.organization %}
+        <p><em>{{ service.organization.name }}</em></p>
+    {% endif %}
     {% if service.image %}
         <img src="{{ service.image.url }}" alt="{{ service.name }}" width="500">
     {% endif %}
