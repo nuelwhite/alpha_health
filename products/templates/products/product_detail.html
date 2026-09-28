@@ -8,4 +8,8 @@
         <img src="{{ product.image.url }}" alt="{{ product.name }}" width="400">
     {% endif %}
     <div>{{ product.description|linebreaks }}</div>
+
+    <p>
+        <a href="{% url 'contact_view' %}?product={{ product.id }}">Enquire about this product</a>
+    </p>
 {% endblock %}
