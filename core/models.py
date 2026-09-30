@@ -15,10 +15,15 @@ class Organization(models.Model):
     
     class Meta:
         ordering = ['display_order', 'name']
+ 
         
-        
-        
+class Redirect(models.Model):
+    old_path = models.CharField(max_length=255, unique=True, help_text='e.g. /projects/old-slug/')
+    new_path = models.CharField(max_length=255, help_text='e.g. /projects/new-slug/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return self.name
+        return f'{self.old_path} → {self.new_path}'       
+
     
     
