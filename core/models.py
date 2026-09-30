@@ -15,6 +15,9 @@ class Organization(models.Model):
     
     class Meta:
         ordering = ['display_order', 'name']
+        
+    def __str__(self):
+        return self.name
  
         
 class Redirect(models.Model):
