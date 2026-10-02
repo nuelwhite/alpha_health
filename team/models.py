@@ -1,5 +1,11 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
+import bleach
 from core.models import Organization
+
+ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 'h2', 'h3', 'h4',
+                 'ul', 'ol', 'li', 'a', 'blockquote']
+ALLOWED_ATTRS = {'a': ['href', 'title']}
 
 
 class TeamMember(models.Model):
@@ -12,7 +18,7 @@ class TeamMember(models.Model):
     )
     name = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
-    biography = models.TextField(blank=True)
+    biography = CKEditor5Field(config_name='default', blank=True)
     photo = models.ImageField(upload_to='team/', blank=True, null=True)
     email = models.EmailField(blank=True)
     display_order = models.PositiveIntegerField(default=0)
@@ -25,3 +31,7 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return f'{self.name} — {self.position}'
+
+    def save(self, *args, **kwargs):
+        self.biography = bleach.clean(self.biography, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
+        super().save(*args, **kwargs)
