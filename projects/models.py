@@ -1,5 +1,11 @@
 from django.db import models
 from  core.models import Organization
+from django_ckeditor_5.fields import CKEditor5Field
+import bleach
+
+ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 'h2', 'h3', 'h4',
+                 'ul', 'ol', 'li', 'a', 'blockquote']
+ALLOWED_ATTRS = {'a': ['href', 'title']}
 
 # Create your models here.
 
@@ -14,7 +20,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     excerpt = models.TextField(blank=True)
-    content = models.TextField(blank=True)
+    content = CKEditor5Field(config_name='default', blank=True)
     featured_image = models.ImageField(upload_to='projects/', blank=True, null=True)
     project_date = models.DateField(blank=True, null=True)
     location = models.CharField(max_length=200, blank=True)
@@ -22,6 +28,10 @@ class Project(models.Model):
     published_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    def save(self, *args, **kwargs):
+        self.content = bleach.clean(self.content, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-project_date', '-created_at']
