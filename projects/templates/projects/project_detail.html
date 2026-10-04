@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}{{ project.title }}{% endblock %}
 {% block content %}
-    <p><a href="{% url 'project_list' %}">&larr; Back to Projects</a></p>
-    <h1>{{ project.title }}</h1>
-    {% if project.organization %}
-        <p><em>{{ project.organization.name }}</em></p>
-    {% endif %}
-    {% if project.location %}
-        <p>Location: {{ project.location }}</p>
-    {% endif %}
-    {% if project.featured_image %}
-        <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" width="500">
-    {% endif %}
-    <div>{{ project.content|linebreaks }}</div>
-    {% if project.images.all %}
-        <h2>Gallery</h2>
-        {% for img in project.images.all %}
-            <figure>
-                <img src="{{ img.image.url }}" alt="{{ img.alt_text }}" width="300">
-                {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
-            </figure>
-        {% endfor %}
-    {% endif %}
+    <section class="page-hero">
+        <h1>{{ project.title }}</h1>
+    </section>
+
+    <section class="section detail-page">
+        <p><a href="{% url 'project_list' %}">&larr; Back to Projects</a></p>
+        {% if project.organization %}
+            <span class="org-badge">{{ project.organization.name }}</span>
+        {% endif %}
+        {% if project.location %}
+            <p class="meta-line">{{ project.location }}{% if project.project_date %} &middot; {{ project.project_date }}{% endif %}</p>
+        {% endif %}
+        {% if project.featured_image %}
+            <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="detail-page__image">
+        {% endif %}
+        <div class="rich-content">{{ project.content|safe }}</div>
+
+        {% if project.images.all %}
+            <h2>Gallery</h2>
+            <div class="card-grid">
+                {% for img in project.images.all %}
+                    <figure class="gallery-item">
+                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                        {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+                    </figure>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
 {% endblock %}

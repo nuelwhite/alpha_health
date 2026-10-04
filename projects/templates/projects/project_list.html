@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Projects{% endblock %}
 {% block content %}
-    <h1>Projects</h1>
-    <ul>
+    <section class="page-hero">
+        <h1>Our Projects</h1>
+    </section>
+
+    <section class="card-grid">
         {% for project in projects %}
-            <li>
-                <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
-                {% if project.organization %}
-                    — {{ project.organization.name }}
+            <a href="{% url 'project_detail' project.slug %}" class="service-card">
+                {% if project.featured_image %}
+                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}">
                 {% endif %}
-                <p>{{ project.excerpt }}</p>
-            </li>
+                <div class="service-card__body">
+                    <h3>{{ project.title }}</h3>
+                </div>
+            </a>
         {% empty %}
-            <li>No projects published yet.</li>
+            <p>No projects published yet.</p>
         {% endfor %}
-    </ul>
+    </section>
+
+    <section class="section" style="text-align: center;">
+        <h2>Let's work together</h2>
+        <a href="{% url 'contact_view' %}" class="btn btn--primary">Contact Us</a>
+    </section>
 {% endblock %}
