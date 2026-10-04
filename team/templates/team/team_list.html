@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 {% block title %}Our Team{% endblock %}
 {% block content %}
-    <h1>Our Team</h1>
-    <ul>
+    <section class="page-hero">
+        <h1>Our Team</h1>
+    </section>
+
+    {% if founder %}
+        <section class="founder">
+            <div class="founder__photo-wrap">
+                {% if founder.photo %}
+                    <img src="{{ founder.photo.url }}" alt="{{ founder.name }}" class="founder__photo">
+                {% endif %}
+            </div>
+            <div class="founder__bio">
+                <h2>{{ founder.name }}</h2>
+                <p class="founder__position">{{ founder.position }}</p>
+                <div class="rich-content">{{ founder.biography|safe }}</div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="card-grid card-grid--people">
         {% for member in members %}
-            <li>
+            <div class="person-card">
                 {% if member.photo %}
-                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" width="150">
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}">
                 {% endif %}
-                <strong>{{ member.name }}</strong> — {{ member.position }}
-                {% if member.organization %}
-                    <br><em>{{ member.organization.name }}</em>
-                {% endif %}
-                <p>{{ member.biography }}</p>
-            </li>
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.position }}</p>
+            </div>
         {% empty %}
-            <li>No team members listed yet.</li>
+            <p>No team members listed yet.</p>
         {% endfor %}
-    </ul>
+    </section>
 {% endblock %}
