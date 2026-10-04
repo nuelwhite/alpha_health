@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}{{ service.name }}{% endblock %}
 {% block content %}
-    <p><a href="{% url 'service_list' %}">&larr; Back to Services</a></p>
-    <h1>{{ service.name }}</h1>
-    {% if service.organization %}
-        <p><em>{{ service.organization.name }}</em></p>
-    {% endif %}
-    {% if service.image %}
-        <img src="{{ service.image.url }}" alt="{{ service.name }}" width="500">
-    {% endif %}
-    <div>{{ service.description|linebreaks }}</div>
+    <section class="page-hero">
+        <h1>{{ service.name }}</h1>
+    </section>
+
+    <section class="section detail-page">
+        <p><a href="{% url 'service_list' %}">&larr; Back to Services</a></p>
+        {% if service.organization %}
+            <span class="org-badge">{{ service.organization.name }}</span>
+        {% endif %}
+        {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.name }}" class="detail-page__image">
+        {% endif %}
+        <div class="rich-content">{{ service.description|safe }}</div>
+    </section>
 {% endblock %}

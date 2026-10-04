@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}Services{% endblock %}
 {% block content %}
-    <h1>Services</h1>
-    <ul>
+    <section class="page-hero">
+        <h1>Our Services</h1>
+    </section>
+
+    <section class="card-grid">
         {% for service in services %}
-            <li>
-                <a href="{% url 'service_detail' service.slug %}">{{ service.name }}</a>
-                <p>{{ service.short_description }}</p>
-            </li>
+            <a href="{% url 'service_detail' service.slug %}" class="service-card">
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                {% endif %}
+                <div class="service-card__body">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.short_description }}</p>
+                </div>
+            </a>
         {% empty %}
-            <li>No services listed yet.</li>
+            <p>No services listed yet.</p>
         {% endfor %}
-    </ul>
+    </section>
+
+    <section class="section" style="text-align: center;">
+        <h2>Let's work together</h2>
+        <a href="{% url 'contact_view' %}" class="btn btn--primary">Contact Us</a>
+    </section>
 {% endblock %}
