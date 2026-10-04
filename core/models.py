@@ -12,6 +12,8 @@ class Organization(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     short_description = models.TextField(blank=True)
     description = CKEditor5Field(config_name='default', blank=True)
+    mission = CKEditor5Field(config_name='default', blank=True)
+    vision = CKEditor5Field(config_name='default', blank=True)
     logo = models.ImageField(upload_to='organization_logos/', blank=True, null=True)
     country = models.CharField(max_length=100, blank=True)
     website_url = models.URLField(blank=True)
@@ -26,6 +28,8 @@ class Organization(models.Model):
 
     def save(self, *args, **kwargs):
         self.description = bleach.clean(self.description, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
+        self.mission = bleach.clean(self.mission, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
+        self.vision = bleach.clean(self.vision, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS)
         super().save(*args, **kwargs)
 
 

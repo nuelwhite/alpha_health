@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+    <section class="page-hero">
+        <h1>About Us</h1>
+    </section>
+
+    {% if organization %}
+        <section class="section">
+            <h2>Our Story</h2>
+            <div class="rich-content">{{ organization.description|safe }}</div>
+        </section>
+
+        <div class="mission-vision">
+            <div class="mission-vision__box">
+                <h3>Mission</h3>
+                <div class="rich-content">{{ organization.mission|safe }}</div>
+            </div>
+            <div class="mission-vision__box">
+                <h3>Vision</h3>
+                <div class="rich-content">{{ organization.vision|safe }}</div>
+            </div>
+        </div>
+    {% endif %}
+
+    <section class="values">
+        <div class="value-card">
+            <h3>Results Oriented Growth</h3>
+            <p>We drive measurable impact through sustainable progress.</p>
+        </div>
+        <div class="value-card">
+            <h3>Client Collaboration</h3>
+            <p>We partner closely with clients to achieve shared success.</p>
+        </div>
+        <div class="value-card">
+            <h3>Data-Driven Creativity</h3>
+            <p>We combine insights and innovation to deliver effective solutions.</p>
+        </div>
+    </section>
+
+    <section class="section" style="text-align: center;">
+        <a href="{% url 'contact_view' %}" class="btn btn--primary">Contact Us</a>
+    </section>
+{% endblock %}

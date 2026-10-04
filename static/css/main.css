@@ -217,3 +217,40 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover { background: var(--color-teal-dark); }
+
+/* About page */
+.page-hero {
+    background: var(--color-ink);
+    color: #fff;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.page-hero h1 { color: #fff; }
+
+.rich-content p { margin-bottom: 1rem; }
+
+.mission-vision {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.mission-vision__box {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.5rem;
+}
+
+.mission-vision__box h3 {
+    color: var(--color-teal-dark);
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 700px) {
+    .mission-vision { grid-template-columns: 1fr; }
+}

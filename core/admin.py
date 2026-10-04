@@ -10,6 +10,8 @@ class OrganizationAdminForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'description': CKEditor5Widget(config_name='default'),
+            'mission': CKEditor5Widget(config_name='default'),
+            'vision': CKEditor5Widget(config_name='default'),
         }
 
 

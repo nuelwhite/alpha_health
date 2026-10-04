@@ -16,3 +16,7 @@ def home(request):
 def organization_list(request):
     organizations = Organization.objects.filter(active=True)
     return render(request, 'core/organization_list.html', {'organizations': organizations})
+
+def about(request):
+    organization = Organization.objects.filter(active=True).first()
+    return render(request, 'core/about.html', {'organization': organization})
