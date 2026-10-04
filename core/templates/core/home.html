@@ -1,31 +1,62 @@
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock %}
-
 {% block content %}
-    <h1>The Alpha Health Group</h1>
-    <p>Advancing health equity through sterilization training, community outreach, and medical supply.</p>
+    <section class="hero">
+        <div class="hero__content">
+            <h1>Advancing health equity, one facility at a time</h1>
+            <p>We strengthen sterile processing, infection prevention, and public health capacity through hands-on training, research, and community outreach.</p>
+            <div class="hero__actions">
+                <a href="{% url 'service_list' %}" class="btn btn--primary">Explore Our Services</a>
+                <a href="{% url 'contact_view' %}" class="btn btn--secondary">Partner With Us</a>
+            </div>
+        </div>
+    </section>
 
-    <h2>Our Organizations</h2>
-    <ul>
-        {% for org in organizations %}
-            <li>{{ org.name }} ({{ org.country }})</li>
-        {% endfor %}
-    </ul>
+    <section class="values">
+        <div class="value-card">
+            <h3>Health Equity</h3>
+            <p>Ensuring quality healthcare for all.</p>
+        </div>
+        <div class="value-card">
+            <h3>Inclusive Practices</h3>
+            <p>Empowering every voice in healthcare.</p>
+        </div>
+        <div class="value-card">
+            <h3>Diversity</h3>
+            <p>Embracing differences that strengthen us.</p>
+        </div>
+        <div class="value-card">
+            <h3>Inclusion</h3>
+            <p>Creating spaces where everyone belongs.</p>
+        </div>
+    </section>
 
-    <h2>Featured Projects</h2>
-    <ul>
-        {% for project in featured_projects %}
-            <li><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></li>
-        {% empty %}
-            <li>No projects yet.</li>
-        {% endfor %}
-    </ul>
+    <section class="section">
+        <h2>Our Organizations</h2>
+        <ul class="plain-list">
+            {% for org in organizations %}
+                <li>{{ org.name }} ({{ org.country }})</li>
+            {% endfor %}
+        </ul>
+    </section>
 
-    <h2>Our Services</h2>
-    <ul>
-        {% for service in services %}
-            <li><a href="{% url 'service_detail' service.slug %}">{{ service.name }}</a></li>
-        {% endfor %}
-    </ul>
+    <section class="section">
+        <h2>Featured Projects</h2>
+        <ul class="plain-list">
+            {% for project in featured_projects %}
+                <li><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></li>
+            {% empty %}
+                <li>No projects yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Our Services</h2>
+        <ul class="plain-list">
+            {% for service in services %}
+                <li><a href="{% url 'service_detail' service.slug %}">{{ service.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
