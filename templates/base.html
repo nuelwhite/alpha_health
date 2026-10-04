@@ -1,27 +1,38 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}The Alpha Health Group{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{% url 'organization_list' %}">Organizations</a> |
-        <a href="{% url 'project_list' %}">Projects</a> |
-        <a href="{% url 'service_list' %}">Services</a> |
-        <a href="{% url 'team_list' %}">Team</a> |
-        <a href="{% url 'product_list' %}">Products</a> |
-        <a href="{% url 'contact_view' %}">Contact</a>
-    </nav>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a href="{% url 'home' %}" class="site-logo">The Alpha Health Group</a>
+            <nav class="site-nav">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'organization_list' %}">About</a>
+                <a href="{% url 'service_list' %}">Services</a>
+                <a href="{% url 'project_list' %}">Projects</a>
+                <a href="{% url 'team_list' %}">Team</a>
+                <a href="{% url 'product_list' %}">Products</a>
+                <a href="{% url 'contact_view' %}">Contact</a>
+            </nav>
+            <a href="{% url 'organization_list' %}" class="site-header__ao-link">AO Health Group</a>
+        </div>
+    </header>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; {% now "Y" %} The Alpha Health Group</p>
+    <footer class="site-footer">
+        <p>&copy; {% now "Y" %} The Alpha Health Group. All rights reserved.</p>
     </footer>
 </body>
 </html>
