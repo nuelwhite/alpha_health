@@ -20,3 +20,7 @@ def organization_list(request):
 def about(request):
     organization = Organization.objects.filter(active=True).first()
     return render(request, 'core/about.html', {'organization': organization})
+
+def ao_landing(request):
+    ao = Organization.objects.filter(active=True, country='GH').first()
+    return render(request, 'core/ao_landing.html', {'ao': ao})

@@ -652,3 +652,46 @@ button[type="submit"]:hover { background: var(--color-teal-dark); }
 @media (max-width: 700px) {
     .contact-info { grid-template-columns: 1fr; }
 }
+
+/* AO Health Group landing page */
+.ao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.ao-header__logo { height: 48px; width: auto; border-radius: 0; }
+
+.ao-header__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.ao-header__back {
+    color: var(--color-teal-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.ao-hero {
+    background: var(--color-ink);
+    color: #fff;
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.ao-hero h1 { color: #fff; margin-bottom: 1.25rem; }
+
+.ao-hero__content {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.ao-hero .rich-content {
+    color: #d8e3e0;
+    margin-bottom: 2rem;
+}
