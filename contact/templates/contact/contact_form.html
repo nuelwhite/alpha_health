@@ -1,10 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}Contact Us{% endblock %}
 {% block content %}
-    <h1>Contact Us</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
-    </form>
+    <section class="page-hero">
+        <h1>Contact Us</h1>
+    </section>
+
+    <section class="contact-info">
+        <div class="contact-info__card">
+            <h3>Call Us</h3>
+            <p>718-664-3954<br>Monday &ndash; Friday</p>
+        </div>
+        <div class="contact-info__card">
+            <h3>Email</h3>
+            <p>info@thealphahealthgroup.org</p>
+        </div>
+        <div class="contact-info__card">
+            <h3>Offices</h3>
+            <p>860 Melrose Avenue<br>Bronx, NY 10451</p>
+        </div>
+    </section>
+
+    <section class="section contact-form-wrap">
+        <h2>Send us a message</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Send</button>
+        </form>
+    </section>
 {% endblock %}

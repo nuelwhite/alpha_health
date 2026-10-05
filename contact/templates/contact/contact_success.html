@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Message Sent{% endblock %}
 {% block content %}
-    <h1>Thank you</h1>
-    <p>Your message has been received. We'll be in touch soon.</p>
+    <section class="page-hero">
+        <h1>Thank You</h1>
+    </section>
+    <section class="section" style="text-align: center;">
+        <p>Your message has been received. We'll be in touch soon.</p>
+        <a href="{% url 'home' %}" class="btn btn--primary">Return Home</a>
+    </section>
 {% endblock %}
