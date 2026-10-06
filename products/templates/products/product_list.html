@@ -10,7 +10,13 @@
 </head>
 <body class="ao-landing">
     <header class="ao-header">
-        <a href="{% url 'ao_landing' %}" class="ao-header__title">AO Health Group</a>
+        <a href="{% url 'ao_landing' %}" class="ao-header__title">
+            {% if ao.logo %}
+                <img src="{{ ao.logo.url }}" alt="AO Health Group" class="ao-header__logo">
+            {% else %}
+                AO Health Group
+            {% endif %}
+        </a>
         <a href="{% url 'home' %}" class="ao-header__back">&larr; The Alpha Health Group</a>
     </header>
 

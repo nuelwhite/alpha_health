@@ -1,31 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <section class="hero">
-        <div class="hero__content">
-            <h1>Advancing health equity, one facility at a time</h1>
-            <p>We strengthen sterile processing, infection prevention, and public health capacity through hands-on training, research, and community outreach.</p>
-            <div class="hero__actions">
-                <a href="{% url 'service_list' %}" class="btn btn--primary">Explore Our Services</a>
-                <a href="{% url 'contact_view' %}" class="btn btn--secondary">Partner With Us</a>
+    <section class="hero" style="background-image: url('{% static 'images/hero.jpg' %}');">
+        <div class="hero__overlay">
+            <div class="hero__content">
+                <h1>Advancing health equity, one facility at a time</h1>
+                <p>We strengthen sterile processing, infection prevention, and public health capacity through hands-on training, research, and community outreach.</p>
+                <div class="hero__actions">
+                    <a href="{% url 'service_list' %}" class="btn btn--primary">Explore Our Services</a>
+                    <a href="{% url 'contact_view' %}" class="btn btn--secondary">Partner With Us</a>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="values">
         <div class="value-card">
+            <img src="{% static 'images/Equality-G_.png' %}" alt="Health Equity" class="value-card__icon">
             <h3>Health Equity</h3>
             <p>Ensuring quality healthcare for all.</p>
         </div>
         <div class="value-card">
+            <img src="{% static 'images/Inclusive-G_.png' %}" alt="Inclusive Practices" class="value-card__icon">
             <h3>Inclusive Practices</h3>
             <p>Empowering every voice in healthcare.</p>
         </div>
         <div class="value-card">
+            <img src="{% static 'images/Diversity-G_.png' %}" alt="Diversity" class="value-card__icon">
             <h3>Diversity</h3>
             <p>Embracing differences that strengthen us.</p>
         </div>
         <div class="value-card">
+            <img src="{% static 'images/Inclusion-G_.png' %}" alt="Inclusion" class="value-card__icon">
             <h3>Inclusion</h3>
             <p>Creating spaces where everyone belongs.</p>
         </div>

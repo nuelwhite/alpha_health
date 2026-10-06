@@ -13,7 +13,13 @@
 <body>
     <header class="site-header">
         <div class="site-header__inner">
-            <a href="{% url 'home' %}" class="site-logo">The Alpha Health Group</a>
+            <a href="{% url 'home' %}" class="site-logo">
+                {% if site_organization.logo %}
+                    <img src="{{ site_organization.logo.url }}" alt="{{ site_organization.name }}" class="site-logo__img">
+                {% else %}
+                    The Alpha Health Group
+                {% endif %}
+            </a>
             <nav class="site-nav">
                 <a href="{% url 'home' %}">Home</a>
                 <a href="{% url 'about' %}">About</a>

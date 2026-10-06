@@ -9,26 +9,26 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body class="ao-landing">
-    <header class="ao-header">
-        {% if ao.logo %}
-            <img src="{{ ao.logo.url }}" alt="AO Health Group" class="ao-header__logo">
-        {% else %}
-            <span class="ao-header__title">AO Health Group</span>
-        {% endif %}
+    <header class="ao-header ao-header--slim">
         <a href="{% url 'home' %}" class="ao-header__back">&larr; The Alpha Health Group</a>
     </header>
 
-    <section class="ao-hero">
-        <div class="ao-hero__content">
-            <h1>Primary Focus</h1>
-            <div class="rich-content">
-                {% if ao %}{{ ao.short_description|default:ao.description|safe }}{% endif %}
-            </div>
-            <a href="{% url 'product_list' %}" class="btn btn--primary">Product Catalogue</a>
+    <img src="{% static 'images/AO-Health-Banner.png' %}" alt="AO Health Group" class="ao-banner">
+
+    <div class="ao-banner__cta">
+        <a href="{% url 'product_list' %}" class="btn btn--primary">Product Catalogue</a>
+    </div>
+
+    <section class="section">
+        <h2 style="text-align: center;">Primary Focus</h2>
+        <div class="rich-content" style="max-width: 720px; margin: 0 auto; text-align: center;">
+            {% if ao %}{{ ao.short_description|default:ao.description|safe }}{% endif %}
         </div>
     </section>
 
     <footer class="site-footer">
+        <p><strong>AO Health Group</strong> &middot; 7 Adenkum Rd, Kanda, Accra</p>
+        <p>+233 54 830 5433 &middot; +233 26 265 3618 &middot; info@thealphahealthgroup.org</p>
         <p>&copy; {% now "Y" %} AO Health Group, a program of The Alpha Health Group.</p>
     </footer>
 </body>
