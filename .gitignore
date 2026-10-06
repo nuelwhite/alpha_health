@@ -13,4 +13,4 @@ __pycache__/
 .idea/
 
 # Media uploads
-media/*.Zone.Identifier
+static/*.Zone.Identifier
