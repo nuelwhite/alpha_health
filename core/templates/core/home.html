@@ -41,7 +41,7 @@
     <section class="section" style="padding-bottom: 0;">
         <h2 style="text-align: center;">Featured Projects</h2>
     </section>
-    <section class="card-grid">
+    <section class="card-grid card-grid--tall">
         {% for project in featured_projects %}
             <a href="{% url 'project_detail' project.slug %}" class="service-card">
                 {% if project.featured_image %}
@@ -60,25 +60,23 @@
     </p>
 
     <section class="section" style="padding-bottom: 0;">
-        <h2 style="text-align: center;">Our Services</h2>
+        <h2 style="text-align: center;">Primary Focus</h2>
+        <div class="rich-content" style="max-width: 780px; margin: 0 auto; text-align: center;">
+            {% if organization %}{{ organization.short_description|default:organization.description|safe }}{% endif %}
+        </div>
     </section>
-    <section class="card-grid">
-        {% for service in services %}
-            <a href="{% url 'service_detail' service.slug %}" class="service-card">
+    <section class="featured-services">
+        {% for service in featured_services %}
+            <a href="{% url 'service_detail' service.slug %}" class="featured-service-card">
                 {% if service.image %}
                     <img src="{{ service.image.url }}" alt="{{ service.name }}">
                 {% endif %}
-                <div class="service-card__body">
-                    <h3>{{ service.name }}</h3>
-                    <p>{{ service.short_description }}</p>
-                </div>
+                <h3>{{ service.name }}</h3>
             </a>
-        {% empty %}
-            <p style="text-align: center; grid-column: 1 / -1;">No services listed yet.</p>
         {% endfor %}
     </section>
-    <p style="text-align: center; margin: -1rem 0 3rem;">
-        <a href="{% url 'service_list' %}">View all services &rarr;</a>
+    <p style="text-align: center; margin: 1rem 0 3rem;">
+        <a href="{% url 'service_list' %}">View more services &rarr;</a>
     </p>
 
     <section class="section" style="text-align: center;">

@@ -6,11 +6,12 @@ from services.models import Service
 
 def home(request):
     context = {
-        'organizations': Organization.objects.filter(active=True),
-        'featured_projects': Project.objects.filter(published=True)[:3],
-        'services': Service.objects.filter(active=True)[:6],
+        'organization': Organization.objects.filter(active=True).exclude(country='GH').first(),
+        'featured_projects': Project.objects.filter(published=True)[:6],
+        'featured_services': Service.objects.filter(slug__in=['sterilization', 'public-health'], active=True),
     }
     return render(request, 'core/home.html', context)
+
 
 
 def organization_list(request):
