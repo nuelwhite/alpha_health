@@ -10,3 +10,10 @@ def service_list(request):
 def service_detail(request, slug):
     service = get_object_or_404(Service, slug=slug, active=True)
     return render(request, 'services/service_detail.html', {'service': service})
+
+def home(request):
+    context = {
+        'featured_projects': Project.objects.filter(published=True)[:3],
+        'services': Service.objects.filter(active=True)[:6],
+    }
+    return render(request, 'core/home.html', context)

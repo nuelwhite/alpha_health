@@ -31,32 +31,51 @@
         </div>
     </section>
 
-    <section class="section">
-        <h2>Our Organizations</h2>
-        <ul class="plain-list">
-            {% for org in organizations %}
-                <li>{{ org.name }} ({{ org.country }})</li>
-            {% endfor %}
-        </ul>
+    <section class="section" style="padding-bottom: 0;">
+        <h2 style="text-align: center;">Featured Projects</h2>
     </section>
-
-    <section class="section">
-        <h2>Featured Projects</h2>
-        <ul class="plain-list">
-            {% for project in featured_projects %}
-                <li><a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a></li>
-            {% empty %}
-                <li>No projects yet.</li>
-            {% endfor %}
-        </ul>
+    <section class="card-grid">
+        {% for project in featured_projects %}
+            <a href="{% url 'project_detail' project.slug %}" class="service-card">
+                {% if project.featured_image %}
+                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <div class="service-card__body">
+                    <h3>{{ project.title }}</h3>
+                </div>
+            </a>
+        {% empty %}
+            <p style="text-align: center; grid-column: 1 / -1;">No projects published yet.</p>
+        {% endfor %}
     </section>
+    <p style="text-align: center; margin: -1rem 0 2rem;">
+        <a href="{% url 'project_list' %}">View all projects &rarr;</a>
+    </p>
 
-    <section class="section">
-        <h2>Our Services</h2>
-        <ul class="plain-list">
-            {% for service in services %}
-                <li><a href="{% url 'service_detail' service.slug %}">{{ service.name }}</a></li>
-            {% endfor %}
-        </ul>
+    <section class="section" style="padding-bottom: 0;">
+        <h2 style="text-align: center;">Our Services</h2>
+    </section>
+    <section class="card-grid">
+        {% for service in services %}
+            <a href="{% url 'service_detail' service.slug %}" class="service-card">
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                {% endif %}
+                <div class="service-card__body">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.short_description }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p style="text-align: center; grid-column: 1 / -1;">No services listed yet.</p>
+        {% endfor %}
+    </section>
+    <p style="text-align: center; margin: -1rem 0 3rem;">
+        <a href="{% url 'service_list' %}">View all services &rarr;</a>
+    </p>
+
+    <section class="section" style="text-align: center;">
+        <h2>Let's work together</h2>
+        <a href="{% url 'contact_view' %}" class="btn btn--primary">Contact Us</a>
     </section>
 {% endblock %}
