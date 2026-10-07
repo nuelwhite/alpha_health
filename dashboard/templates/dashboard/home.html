@@ -1,0 +1,33 @@
+{% extends 'dashboard/base_admin.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block admin_content %}
+    <h1>Dashboard</h1>
+    <div class="dash-stats">
+        {% for label, count in counts.items %}
+            <div class="dash-stat-card">
+                <span class="dash-stat-card__count">{{ count }}</span>
+                <span class="dash-stat-card__label">{{ label }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Recent Inquiries</h2>
+    <table class="dash-table">
+        <thead>
+            <tr><th>Name</th><th>Email</th><th>Subject</th><th>Status</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+            {% for inquiry in recent_inquiries %}
+                <tr>
+                    <td>{{ inquiry.name }}</td>
+                    <td>{{ inquiry.email }}</td>
+                    <td>{{ inquiry.subject }}</td>
+                    <td>{{ inquiry.status }}</td>
+                    <td>{{ inquiry.created_at|date:"M d, Y" }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">No inquiries yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

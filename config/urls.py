@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('contact/', include('contact.urls')),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
 ]
 
 if settings.DEBUG:
