@@ -1,0 +1,565 @@
+:root {
+    --primary: #0e6b5c;
+    --primary-fg: #fff;
+
+    --body-fg: #16302b;
+    --body-bg: #faf7f2;
+    --body-quiet-color: #5c5c5c;
+    --body-loud-color: #16302b;
+
+    --header-color: #fff;
+    --header-branding-color: #fff;
+    --header-bg: #0e6b5c;
+    --header-link-color: #fff;
+
+    --breadcrumbs-fg: #e8f3f0;
+    --breadcrumbs-link-fg: #fff;
+    --breadcrumbs-bg: #0a4f44;
+
+    --link-fg: #0a4f44;
+    --link-hover-color: #0e6b5c;
+    --link-selected-fg: #0a4f44;
+
+    --button-fg: #fff;
+    --button-bg: #0e6b5c;
+    --button-hover-bg: #0a4f44;
+    --default-button-bg: #0e6b5c;
+    --default-button-hover-bg: #0a4f44;
+
+    --object-tools-fg: #fff;
+    --object-tools-bg: #c06a3f;
+    --object-tools-hover-bg: #a85834;
+
+    --font-family-primary: 'Inter', -apple-system, sans-serif;
+
+    /* Sidebar / nav specific variables (Django 5.x) */
+    --darkened-bg: #f0ece3;
+    --selected-bg: #e3ddd0;
+    --selected-row: #fdf6e3;
+}
+
+#site-name a, #branding h1 a {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    color: #fff !important;
+}
+
+body {
+    font-family: var(--font-family-primary);
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: var(--primary);
+    color: #fff;
+}
+
+div.breadcrumbs {
+    background: var(--breadcrumbs-bg);
+    color: var(--breadcrumbs-fg);
+}
+
+div.breadcrumbs a {
+    color: #fff;
+}
+
+/* Sidebar nav: force light background, dark readable text */
+#nav-sidebar {
+    background: #fff;
+    border-right: 1px solid #e3ddd0;
+}
+
+#nav-sidebar .module th,
+#nav-sidebar caption,
+#nav-sidebar caption a {
+    background: var(--primary);
+    color: #fff !important;
+}
+
+#nav-sidebar table a,
+#nav-sidebar table td {
+    color: #16302b !important;
+    background: #fff;
+}
+
+#nav-sidebar table tr:hover td,
+#nav-sidebar table tr:hover a {
+    background: #f0ece3;
+}
+
+#nav-sidebar .current-model td,
+#nav-sidebar .current-model a {
+    background: #e8f3f0 !important;
+    font-weight: 600;
+}
+
+/* Sidebar nav, v2: real hierarchy, clean dashboard feel */
+#nav-sidebar {
+    background: #16302b;
+    border-right: none;
+    padding: 1rem 0;
+}
+
+#nav-sidebar .module {
+    margin-bottom: 0.25rem;
+    border: none;
+    background: transparent;
+}
+
+#nav-sidebar caption,
+#nav-sidebar caption a {
+    background: transparent !important;
+    color: #7fa89d !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem 0.4rem;
+    border: none;
+}
+
+#nav-sidebar table {
+    background: transparent;
+}
+
+#nav-sidebar table a,
+#nav-sidebar table td {
+    color: #e8f3f0 !important;
+    background: transparent !important;
+    border: none;
+    padding: 0.45rem 1.5rem;
+    font-size: 0.92rem;
+}
+
+#nav-sidebar table tr:hover td,
+#nav-sidebar table tr:hover a {
+    background: rgba(255,255,255,0.08) !important;
+}
+
+#nav-sidebar .current-model td,
+#nav-sidebar .current-model a {
+    background: #0e6b5c !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 0 20px 20px 0;
+}
+
+#nav-sidebar .addlink {
+    display: none;
+}
+
+#nav-sidebar #nav-filter {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: #fff;
+    margin: 0 1.5rem 1rem;
+    width: calc(100% - 3rem);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+}
+
+#nav-sidebar #nav-filter::placeholder {
+    color: #9fc2b8;
+}
+
+/* Sidebar nav, v3: remove zebra striping, collapse empty Add-link cells */
+#nav-sidebar table tr {
+    background: transparent !important;
+}
+
+#nav-sidebar table tr.row1,
+#nav-sidebar table tr.row2 {
+    background: transparent !important;
+}
+
+#nav-sidebar table td:last-child {
+    display: none;
+}
+
+#nav-sidebar table td:first-child {
+    width: 100%;
+}
+
+/* ===== Content area: dashboard-style cards, forms, tables ===== */
+
+#content {
+    padding: 1.5rem 2rem;
+}
+
+#content h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.6rem;
+}
+
+/* Fieldsets (the boxes wrapping each form's fields) as clean cards */
+fieldset.module {
+    background: #fff;
+    border: 1px solid #e3ddd0;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+fieldset.module h2 {
+    background: transparent !important;
+    color: #16302b !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 0 0.75rem;
+    border-bottom: 1px solid #e3ddd0;
+    margin-bottom: 1rem;
+}
+
+/* Form rows */
+.form-row {
+    padding: 0.6rem 0;
+    border: none;
+}
+
+.form-row label {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #16302b;
+}
+
+input[type="text"], input[type="number"], input[type="email"],
+input[type="url"], input[type="password"], textarea, select {
+    border: 1px solid #e3ddd0 !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 0.65rem !important;
+    font-family: 'Inter', sans-serif;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #0e6b5c !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(14,107,92,0.12);
+}
+
+/* Save/submit row */
+.submit-row {
+    background: transparent;
+    border: none;
+    padding: 1rem 0 0;
+}
+
+.submit-row input[type="submit"] {
+    border-radius: 6px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+}
+
+/* Inlines (e.g. ProjectImage rows inside Project) as their own sub-cards */
+.inline-group {
+    border: 1px solid #e3ddd0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.inline-group .tabular tr {
+    background: #fff;
+}
+
+/* Object tools (the "Add X" button, top right of list pages) */
+.object-tools a.addlink {
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.5rem 1.1rem;
+}
+
+/* List view table */
+#changelist table {
+    border: 1px solid #e3ddd0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+#changelist table thead th {
+    background: #16302b !important;
+}
+
+#changelist table thead th a {
+    color: #fff !important;
+}
+
+#changelist table tbody tr:hover {
+    background: #f0ece3 !important;
+}
+
+#changelist table tbody td, #changelist table tbody th {
+    padding: 0.65rem 0.9rem;
+}
+
+/* Pagination */
+.paginator {
+    padding: 1rem 0;
+}
+
+.paginator a, .paginator .this-page {
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+}
+
+/* Right-hand filter sidebar */
+#changelist-filter {
+    border: 1px solid #e3ddd0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+#changelist-filter h3 {
+    background: #16302b;
+    color: #fff;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+}
+
+/* ===== Dark content area ===== */
+
+:root {
+    --body-bg: #16302b;
+    --body-fg: #e8f3f0;
+}
+
+body, #content {
+    background: #16302b;
+}
+
+#content h1, #content h2, #content h3,
+.breadcrumbs + #content h1 {
+    color: #f5f1ea !important;
+}
+
+/* Fieldsets as dark cards */
+fieldset.module {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+    box-shadow: none;
+}
+
+fieldset.module h2 {
+    color: #e8f3f0 !important;
+    border-bottom: 1px solid #2d4f47;
+}
+
+.form-row label {
+    color: #cfe3de;
+}
+
+.form-row .help, .form-row p.help {
+    color: #8fb3a9;
+}
+
+input[type="text"], input[type="number"], input[type="email"],
+input[type="url"], input[type="password"], textarea, select {
+    background: #16302b !important;
+    border: 1px solid #2d4f47 !important;
+    color: #f5f1ea !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #6f9389;
+}
+
+/* Inlines */
+.inline-group {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+}
+
+.inline-group .tabular tr {
+    background: #1e3d37 !important;
+}
+
+.inline-group .tabular th {
+    background: #16302b !important;
+    color: #cfe3de !important;
+}
+
+.inline-related.last-related { border-bottom: none; }
+
+/* List view table, dark */
+#changelist table {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+    box-shadow: none;
+}
+
+#changelist table tbody td, #changelist table tbody th {
+    background: #1e3d37;
+    color: #e8f3f0;
+    border-bottom: 1px solid #2d4f47;
+}
+
+#changelist table tbody th a, #changelist table tbody td a {
+    color: #6fc2ae;
+}
+
+#changelist table tbody tr:hover td,
+#changelist table tbody tr:hover th {
+    background: #24473f !important;
+}
+
+/* Filter sidebar, dark body with existing dark header */
+#changelist-filter {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+    box-shadow: none;
+}
+
+#changelist-filter li a {
+    color: #cfe3de;
+}
+
+#changelist-filter li.selected a {
+    color: #6fc2ae;
+    font-weight: 600;
+}
+
+/* Search box above list */
+#changelist-search, #toolbar {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+}
+
+#toolbar input[type="text"] {
+    background: #16302b !important;
+}
+
+/* Pagination, dark */
+.paginator {
+    color: #cfe3de;
+}
+
+.paginator a {
+    background: #1e3d37;
+    color: #6fc2ae;
+    border: 1px solid #2d4f47;
+}
+
+.paginator .this-page {
+    color: #f5f1ea;
+}
+
+/* Object history / delete confirmation text */
+.module, .delete-confirmation {
+    color: #e8f3f0;
+}
+
+/* ===== Dark theme, round 3: app index, recent actions, filter contrast ===== */
+
+/* App index page (/admin/ itself) - the model list tables per app */
+.app-list .model-list tr,
+#content-main table tr.row1,
+#content-main table tr.row2 {
+    background: #1e3d37 !important;
+}
+
+.app-list caption, .module caption {
+    background: #0e6b5c !important;
+}
+
+#content-main table td, #content-main table th {
+    background: #1e3d37 !important;
+    color: #e8f3f0 !important;
+    border-bottom: 1px solid #2d4f47;
+}
+
+#content-main table td a, #content-main table th a {
+    color: #6fc2ae !important;
+}
+
+#content-main table td.addlink a,
+#content-main table td.changelink a {
+    color: #cfa15a !important;
+}
+
+/* Recent actions sidebar panel (admin homepage, right column) */
+#content-related {
+    background: #1e3d37;
+    border: 1px solid #2d4f47;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+}
+
+#content-related h2 {
+    background: transparent !important;
+    color: #f5f1ea !important;
+    border-bottom: 1px solid #2d4f47;
+}
+
+#content-related h3 {
+    color: #cfe3de !important;
+}
+
+#recent-actions-module a {
+    color: #6fc2ae !important;
+}
+
+#recent-actions-module td, #recent-actions-module li {
+    color: #cfe3de !important;
+}
+
+/* Filter sidebar: inactive links + "show counts" toggle */
+#changelist-filter summary,
+#changelist-filter details summary {
+    color: #cfe3de !important;
+}
+
+#changelist-filter .viewlink, #changelist-filter .hidelink {
+    color: #8fb3a9 !important;
+}
+
+/* Filter sidebar, fully dark for consistency */
+#changelist-filter {
+    background: #1e3d37 !important;
+}
+
+#changelist-filter ul {
+    background: #1e3d37;
+}
+
+#changelist-filter li a {
+    color: #a8c9bf !important;
+}
+
+#changelist-filter li.selected a,
+#changelist-filter li a:hover {
+    color: #6fc2ae !important;
+}
+
+#changelist-filter summary {
+    background: #1e3d37 !important;
+}
+
+/* CKEditor content area: keep editing surface light, fix faint text */
+.ck-editor__editable {
+    background: #fff !important;
+    color: #16302b !important;
+}
+
+.ck-editor__editable p {
+    color: #16302b !important;
+}
+
+.ck.ck-toolbar {
+    background: #f5f1ea !important;
+    border-color: #2d4f47 !important;
+}
+
+.ck.ck-button, .ck.ck-dropdown__button {
+    color: #16302b !important;
+}
+
+.ck.ck-editor__main {
+    border-color: #2d4f47 !important;
+}

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'team',
     'products',
     'contact',
-    'dashboard',
 
 ]
 
@@ -151,7 +150,3 @@ CKEDITOR_5_CONFIGS = {
                     'bulletedList', 'numberedList', 'blockQuote'],
     },
 }
-
-LOGIN_URL = 'dashboard:login'
-LOGIN_REDIRECT_URL = 'dashboard:home'
-LOGOUT_REDIRECT_URL = 'dashboard:login'
