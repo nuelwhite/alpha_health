@@ -32,11 +32,17 @@
         {% endfor %}
     </section>
 
-    <p class="catalogue-count">{{ products|length }} product{{ products|length|pluralize }} &middot; click any product to view details</p>
+    <div class="catalogue-search">
+        <input type="search" id="product-search" placeholder="Search by name, code or category" aria-label="Search products" autocomplete="off">
+    </div>
+
+    <p class="catalogue-count" aria-live="polite">
+        <span id="product-count">{{ products|length }} product{{ products|length|pluralize }}</span> &middot; click any product to view details
+    </p>
 
     <section class="card-grid">
         {% for product in products %}
-            <a href="{% url 'product_detail' product.slug %}" class="service-card">
+            <a href="{% url 'product_detail' product.slug %}" class="service-card" data-search="{{ product.name|lower }} {{ product.product_code|lower }} {{ product.category.name|lower }}">
                 {% if product.image %}
                     <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% endif %}
@@ -49,11 +55,36 @@
             <p>No products match this category.</p>
         {% endfor %}
     </section>
+    <p id="no-results" class="catalogue-empty" hidden>No products match your search.</p>
 
     <footer class="site-footer">
         <p><strong>AO Health Group</strong> &middot; 7 Adenkum Rd, Kanda, Accra</p>
         <p>+233 54 830 5433 &middot; +233 26 265 3618 &middot; info@thealphahealthgroup.org</p>
         <p>&copy; {% now "Y" %} AO Health Group, a program of The Alpha Health Group.</p>
     </footer>
+
+    <script>
+        (function () {
+            var input = document.getElementById('product-search');
+            if (!input) return;
+            var cards = document.querySelectorAll('.card-grid .service-card');
+            var countEl = document.getElementById('product-count');
+            var emptyEl = document.getElementById('no-results');
+
+            function update() {
+                var q = input.value.trim().toLowerCase();
+                var visible = 0;
+                cards.forEach(function (card) {
+                    var match = !q || card.dataset.search.indexOf(q) !== -1;
+                    card.hidden = !match;
+                    if (match) visible++;
+                });
+                countEl.textContent = visible + ' product' + (visible === 1 ? '' : 's');
+                emptyEl.hidden = visible !== 0;
+            }
+
+            input.addEventListener('input', update);
+        })();
+    </script>
 </body>
 </html>

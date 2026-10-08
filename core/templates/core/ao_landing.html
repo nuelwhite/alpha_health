@@ -22,7 +22,7 @@
     <section class="section">
         <h2 style="text-align: center;">Primary Focus</h2>
         <div class="rich-content" style="max-width: 720px; margin: 0 auto; text-align: center;">
-            {% if ao %}{{ ao.short_description|default:ao.description|safe }}{% endif %}
+            {% if ao.short_description %}<p>{{ ao.short_description }}</p>{% elif ao %}{{ ao.description|safe }}{% endif %}
         </div>
     </section>
 

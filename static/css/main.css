@@ -772,3 +772,37 @@ button[type="submit"]:hover { background: var(--color-teal-dark); }
 @media (max-width: 700px) {
     .featured-services { grid-template-columns: 1fr; }
 }
+
+/* Make the hidden attribute win over class-level display rules */
+[hidden] {
+    display: none !important;
+}
+
+/* Catalogue live search */
+.catalogue-search {
+    max-width: 480px;
+    margin: 1.5rem auto 0;
+    padding: 0 1.5rem;
+}
+
+.catalogue-search input {
+    width: 100%;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+.catalogue-search input:focus {
+    outline: none;
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 107, 92, 0.12);
+}
+
+.catalogue-empty {
+    text-align: center;
+    color: #5c5c5c;
+    padding: 1rem 0 2rem;
+}

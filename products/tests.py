@@ -60,3 +60,9 @@ class ProductViewTest(TestCase):
     def test_detail_view_inactive_returns_404(self):
         response = self.client.get(reverse('product_detail', args=['discontinued-item']))
         self.assertEqual(response.status_code, 404)
+        
+        
+    def test_list_has_live_search_hooks(self):
+        response = self.client.get(reverse('product_list'))
+        self.assertContains(response, 'id="product-search"')
+        self.assertContains(response, 'data-search="nitrile gloves ppe-001 ppe"')

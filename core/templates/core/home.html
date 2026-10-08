@@ -62,7 +62,7 @@
     <section class="section" style="padding-bottom: 0;">
         <h2 style="text-align: center;">Primary Focus</h2>
         <div class="rich-content" style="max-width: 780px; margin: 0 auto; text-align: center;">
-            {% if organization %}{{ organization.short_description|default:organization.description|safe }}{% endif %}
+            {% if organization.short_description %}<p>{{ organization.short_description }}</p>{% elif organization %}{{ organization.description|safe }}{% endif %}
         </div>
     </section>
     <section class="featured-services">

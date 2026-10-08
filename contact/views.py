@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactForm
 from products.models import Product
@@ -13,7 +14,10 @@ def contact_view(request):
         initial = {}
         product_id = request.GET.get('product')
         if product_id:
-            product = get_object_or_404(Product, id=product_id, active=True)
+            try:
+                product = get_object_or_404(Product, id=product_id, active=True)
+            except ValueError:
+                raise Http404
             initial = {'product': product}
         form = ContactForm(initial=initial)
 

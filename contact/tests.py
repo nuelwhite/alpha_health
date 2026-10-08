@@ -50,3 +50,7 @@ class ContactViewTest(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(ContactInquiry.objects.count(), 0)
+        
+    def test_get_form_non_numeric_product_returns_404(self):
+        response = self.client.get(reverse('contact_view') + '?product=abc')
+        self.assertEqual(response.status_code, 404)

@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.test import TestCase
 from .models import Organization, Redirect
 from django.contrib.auth.models import Group, User
@@ -78,3 +79,20 @@ class RolePermissionsTest(TestCase):
         self.client.force_login(user)
         self.assertEqual(self.client.get('/admin/projects/project/').status_code, 403)
         self.assertEqual(self.client.get('/admin/products/product/').status_code, 200)
+        
+class OutputEscapingTest(TestCase):
+    def test_home_escapes_short_description(self):
+        Organization.objects.create(
+            name='Org', slug='org', country='USA',
+            short_description='<script>alert(1)</script>',
+        )
+        response = self.client.get(reverse('home'))
+        self.assertNotContains(response, '<script>alert(1)</script>')
+
+    def test_ao_landing_escapes_short_description(self):
+        Organization.objects.create(
+            name='AO', slug='ao', country='GH',
+            short_description='<script>alert(2)</script>',
+        )
+        response = self.client.get(reverse('ao_landing'))
+        self.assertNotContains(response, '<script>alert(2)</script>')
