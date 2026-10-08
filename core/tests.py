@@ -1,5 +1,7 @@
 from django.test import TestCase
 from .models import Organization, Redirect
+from django.contrib.auth.models import Group, User
+from django.core.management import call_command
 
 
 class OrganizationModelTest(TestCase):
@@ -44,3 +46,35 @@ class RedirectMiddlewareTest(TestCase):
     def test_no_matching_redirect_returns_404(self):
         response = self.client.get('/projects/genuinely-nonexistent/')
         self.assertEqual(response.status_code, 404)
+        
+        
+
+class RolePermissionsTest(TestCase):
+    def setUp(self):
+        call_command('setup_roles')
+
+    def make_user(self, username, group_name):
+        user = User.objects.create_user(username, password='x', is_staff=True)
+        user.groups.add(Group.objects.get(name=group_name))
+        return user
+
+    def test_product_manager_scope(self):
+        user = self.make_user('pm', 'Product Manager')
+        self.assertTrue(user.has_perm('products.change_product'))
+        self.assertFalse(user.has_perm('projects.change_project'))
+
+    def test_read_only_cannot_change(self):
+        user = self.make_user('ro', 'Read Only')
+        self.assertTrue(user.has_perm('projects.view_project'))
+        self.assertFalse(user.has_perm('projects.change_project'))
+
+    def test_inquiry_handler_cannot_delete(self):
+        user = self.make_user('ih', 'Inquiry Handler')
+        self.assertTrue(user.has_perm('contact.change_contactinquiry'))
+        self.assertFalse(user.has_perm('contact.delete_contactinquiry'))
+
+    def test_admin_blocks_out_of_scope_models(self):
+        user = self.make_user('pm2', 'Product Manager')
+        self.client.force_login(user)
+        self.assertEqual(self.client.get('/admin/projects/project/').status_code, 403)
+        self.assertEqual(self.client.get('/admin/products/product/').status_code, 200)
