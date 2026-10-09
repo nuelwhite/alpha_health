@@ -806,3 +806,212 @@ button[type="submit"]:hover { background: var(--color-teal-dark); }
     color: #5c5c5c;
     padding: 1rem 0 2rem;
 }
+
+/* Card base (restored) */
+.service-card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition: box-shadow 0.15s ease;
+}
+
+/* Links: site color instead of browser-default blue/purple */
+a {
+    color: var(--color-teal-dark);
+}
+
+/* Mobile header and spacing */
+@media (max-width: 700px) {
+    .site-header__inner {
+        padding: 0.75rem 1rem;
+        gap: 0.5rem 1rem;
+    }
+    .site-logo__img {
+        height: 34px;
+    }
+    .site-header__ao-link {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.82rem;
+    }
+    .site-nav {
+        order: 3;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem 1.1rem;
+    }
+    .site-nav a {
+        margin-right: 0;
+        font-size: 0.9rem;
+    }
+    .card-grid {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+}
+
+
+/* Mobile navigation toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.55rem;
+    cursor: pointer;
+}
+
+.nav-toggle__bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle__bar + .nav-toggle__bar {
+    margin-top: 4px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 700px) {
+    .site-logo { order: 1; }
+    .site-header__ao-link { order: 2; margin-left: auto; }
+    .nav-toggle { display: block; order: 3; }
+
+    .js .site-nav {
+        display: none;
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 0;
+        border-top: 1px solid var(--color-border);
+        padding-top: 0.25rem;
+    }
+
+    .js .site-nav.is-open { display: flex; }
+
+    .js .site-nav a {
+        margin-right: 0;
+        padding: 0.8rem 0.25rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
+
+/* Catalogue category pills: one swipeable row on phones */
+@media (max-width: 700px) {
+    .catalogue-filters {
+        position: relative;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 0.25rem 2rem 0.75rem 1rem;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+        mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    }
+
+    .catalogue-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .catalogue-filters a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        scroll-snap-align: start;
+    }
+}
+
+/* ==== TYPE AND CARD SCALE (edit here to tune sizes) START ==== */
+body { font-size: 0.95rem; }
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1rem; }
+
+.hero h1 { font-size: 2.1rem; }
+.hero p { font-size: 1rem; }
+
+.rich-content { font-size: 0.95rem; }
+.rich-content p { margin-bottom: 1rem; }
+
+.service-card img { aspect-ratio: 3 / 2; }
+.card-grid--tall .service-card img { height: 210px; }
+.service-card__body { padding: 1rem; }
+.service-card__body h3 { font-size: 1rem; }
+.service-card__body p { font-size: 0.85rem; }
+
+.value-card h3, .featured-service-card h3 { font-size: 1rem; }
+.value-card p { font-size: 0.85rem; }
+
+.detail-page__image { aspect-ratio: 3 / 2; }
+
+@media (max-width: 700px) {
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; }
+    .hero h1 { font-size: 1.65rem; }
+    .card-grid--tall .service-card img { height: auto; aspect-ratio: 3 / 2; }
+    .featured-service-card img { aspect-ratio: 4 / 3; }
+
+    /* Product catalogue: two compact cards per row */
+    .ao-landing .card-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; padding: 1rem 0.75rem; }
+    .ao-landing .service-card img { aspect-ratio: 4 / 3; }
+    .ao-landing .service-card__body { padding: 0.6rem 0.7rem; }
+    .ao-landing .service-card__body h3 { font-size: 0.85rem; }
+    .ao-landing .service-card__body p { font-size: 0.72rem; }
+}
+/* ==== TYPE AND CARD SCALE END ==== */
+
+/* ==== DETAIL IMAGE: natural proportions START ==== */
+.detail-page__image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 560px;
+    aspect-ratio: auto;
+    background: none;
+    margin: 0 auto 1.5rem;
+}
+
+@media (max-width: 700px) {
+    .detail-page__image { max-height: 420px; }
+}
+/* ==== DETAIL IMAGE END ==== */
+
+/* ==== CARD IMAGE BACKGROUND START ==== */
+.service-card img { background: #fff; }
+.featured-service-card img { background: transparent; }
+/* ==== CARD IMAGE BACKGROUND END ==== */
+
+/* ==== HEADER WIDTH START ==== */
+.site-header__inner {
+    max-width: 1400px;
+    padding: 1.25rem 2rem;
+}
+
+@media (max-width: 700px) {
+    .site-header__inner { padding: 0.75rem 1rem; }
+}
+/* ==== HEADER WIDTH END ==== */
