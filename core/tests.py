@@ -96,3 +96,10 @@ class OutputEscapingTest(TestCase):
         )
         response = self.client.get(reverse('ao_landing'))
         self.assertNotContains(response, '<script>alert(2)</script>')
+
+class MobileNavTest(TestCase):
+    def test_nav_toggle_hooks_present(self):
+        response = self.client.get(reverse('home'))
+        self.assertContains(response, 'id="nav-toggle"')
+        self.assertContains(response, 'aria-controls="site-nav"')
+        self.assertContains(response, 'id="site-nav"')
