@@ -86,5 +86,13 @@
             input.addEventListener('input', update);
         })();
     </script>
+    <script>
+        (function () {
+            var bar = document.querySelector('.catalogue-filters');
+            var active = bar && bar.querySelector('a.active');
+            if (!active) return;
+            bar.scrollLeft = Math.max(0, active.offsetLeft - (bar.clientWidth - active.offsetWidth) / 2);
+        })();
+    </script>
 </body>
 </html>
