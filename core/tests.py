@@ -144,3 +144,12 @@ class AboutImageTest(TestCase):
         response = self.client.get(reverse('about'))
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, 'about-image__img')
+
+
+class FeaturedServiceOrderTest(TestCase):
+    def test_home_orders_featured_services_by_display_order(self):
+        from services.models import Service
+        Service.objects.create(name='Public Health', slug='public-health', display_order=2)
+        Service.objects.create(name='Sterilization', slug='sterilization', display_order=1)
+        body = self.client.get(reverse('home')).content.decode()
+        self.assertLess(body.index('<h3>Sterilization</h3>'), body.index('<h3>Public Health</h3>'))

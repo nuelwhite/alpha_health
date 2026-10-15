@@ -1044,3 +1044,11 @@ h3 { font-size: 1rem; }
     .about-image__img { max-height: 320px; }
 }
 /* ==== ABOUT IMAGE END ==== */
+
+/* ==== AO HEADER LOGO SIZE START ==== */
+.ao-header__logo { height: 40px; }
+
+@media (max-width: 700px) {
+    .ao-header__logo { height: 31px; }
+}
+/* ==== AO HEADER LOGO SIZE END ==== */
