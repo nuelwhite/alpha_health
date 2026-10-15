@@ -66,3 +66,12 @@ class ProductViewTest(TestCase):
         response = self.client.get(reverse('product_list'))
         self.assertContains(response, 'id="product-search"')
         self.assertContains(response, 'data-search="nitrile gloves ppe-001 ppe"')
+
+class ProductUrlTest(TestCase):
+    def test_catalogue_lives_under_ao(self):
+        self.assertEqual(reverse('product_list'), '/ao/products/')
+        self.assertEqual(
+            reverse('product_detail', args=['nitrile-gloves']),
+            '/ao/products/nitrile-gloves/',
+        )
+        self.assertEqual(self.client.get('/ao/products/').status_code, 200)
