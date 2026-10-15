@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}About{% endblock %}
 {% block content %}
     <section class="page-hero">
@@ -6,6 +7,12 @@
     </section>
 
     {% if organization %}
+        {% if organization.about_image %}
+        <section class="section about-image">
+            <img src="{{ organization.about_image.url }}" alt="{{ organization.name }}" class="about-image__img">
+        </section>
+        {% endif %}
+
         <section class="section">
             <h2>Our Story</h2>
             <div class="rich-content">{{ organization.description|safe }}</div>
@@ -23,16 +30,19 @@
         </div>
     {% endif %}
 
-    <section class="values">
+    <section class="values values--three">
         <div class="value-card">
+            <img src="{% static 'images/Results-Oriented-Growth.png' %}" alt="Results Oriented Growth" class="value-card__icon">
             <h3>Results Oriented Growth</h3>
             <p>We drive measurable impact through sustainable progress.</p>
         </div>
         <div class="value-card">
+            <img src="{% static 'images/Client-Collaboration.png' %}" alt="Client Collaboration" class="value-card__icon">
             <h3>Client Collaboration</h3>
             <p>We partner closely with clients to achieve shared success.</p>
         </div>
         <div class="value-card">
+            <img src="{% static 'images/Data-Driven-Creativity.png' %}" alt="Data-Driven Creativity" class="value-card__icon">
             <h3>Data-Driven Creativity</h3>
             <p>We combine insights and innovation to deliver effective solutions.</p>
         </div>

@@ -1,3 +1,8 @@
+import base64
+import shutil
+import tempfile
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import override_settings
 from django.urls import reverse
 from django.test import TestCase
 from .models import Organization, Redirect
@@ -103,3 +108,39 @@ class MobileNavTest(TestCase):
         self.assertContains(response, 'id="nav-toggle"')
         self.assertContains(response, 'aria-controls="site-nav"')
         self.assertContains(response, 'id="site-nav"')
+
+
+class AboutPageTest(TestCase):
+    def test_value_cards_have_icons_and_centered_grid(self):
+        response = self.client.get(reverse('about'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'values--three')
+        self.assertContains(response, 'class="value-card__icon"', count=3)
+
+
+PNG_1X1 = base64.b64decode(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
+)
+
+
+class AboutImageTest(TestCase):
+    def test_image_appears_before_story_when_set(self):
+        tmp = tempfile.mkdtemp()
+        try:
+            with override_settings(MEDIA_ROOT=tmp):
+                org = Organization.objects.create(name='Alpha', slug='alpha', country='USA')
+                org.about_image.save(
+                    'team.png',
+                    SimpleUploadedFile('team.png', PNG_1X1, content_type='image/png'),
+                )
+                body = self.client.get(reverse('about')).content.decode()
+                self.assertIn('about-image__img', body)
+                self.assertLess(body.index('about-image__img'), body.index('Our Story'))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def test_no_image_markup_when_unset(self):
+        Organization.objects.create(name='Alpha', slug='alpha', country='USA')
+        response = self.client.get(reverse('about'))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'about-image__img')

@@ -1015,3 +1015,32 @@ h3 { font-size: 1rem; }
     .site-header__inner { padding: 0.75rem 1rem; }
 }
 /* ==== HEADER WIDTH END ==== */
+
+/* ==== ABOUT VALUE CARDS START ==== */
+.values--three {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+}
+
+@media (max-width: 700px) {
+    .values--three { grid-template-columns: 1fr; }
+}
+/* ==== ABOUT VALUE CARDS END ==== */
+
+/* ==== ABOUT IMAGE START ==== */
+.about-image { padding-bottom: 0; }
+
+.about-image__img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 520px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+    .about-image__img { max-height: 320px; }
+}
+/* ==== ABOUT IMAGE END ==== */

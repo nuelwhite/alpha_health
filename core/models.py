@@ -15,6 +15,7 @@ class Organization(models.Model):
     mission = CKEditor5Field(config_name='default', blank=True)
     vision = CKEditor5Field(config_name='default', blank=True)
     logo = models.ImageField(upload_to='organization_logos/', blank=True, null=True)
+    about_image = models.ImageField(upload_to='organization_about/', blank=True, null=True)
     country = models.CharField(max_length=100, blank=True)
     website_url = models.URLField(blank=True)
     display_order = models.PositiveIntegerField(default=0)
